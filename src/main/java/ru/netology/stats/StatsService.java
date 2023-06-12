@@ -9,13 +9,10 @@ public class StatsService {
         return (int) generalSale;
     }
 
-    public int averageSales(long[] sales) {
-        long generalSale = 0;
-        for (int i = 0; i < sales.length; i++) {
-            generalSale = (int) (generalSale + sales[i]);
+    public long averageSales(long[] sales) {
+        long generalSale = sum(sales);
 
-        }
-        int averageSela = (int) generalSale / sales.length;
+        long averageSela = generalSale / sales.length;
 
         return averageSela;
     }
@@ -44,14 +41,8 @@ public class StatsService {
 
     public int monthBelowAverageSales(long[] sales) {
         int count = 0;
-        long generalSale = 0;
-        for (int i = 0; i < sales.length; i++) {
-            generalSale = (int) (generalSale + sales[i]);
-
-        }
-        long averageSela = generalSale / sales.length;
-        for (int i = 0; i < sales.length; i++) {
-            if (averageSela < sales[i]) {
+        for (long sale : sales) {
+            if (averageSales(sales) < sale) {
                 count++;
             }
         }
@@ -61,14 +52,8 @@ public class StatsService {
 
     public int monthAboveAverageSales(long[] sales) {
         int count = 0;
-        long generalSale = 0;
-        for (int i = 0; i < sales.length; i++) {
-            generalSale = (int) (generalSale + sales[i]);
-
-        }
-        long averageSela = generalSale / sales.length;
-        for (int i = 0; i < sales.length; i++) {
-            if (averageSela > sales[i]) {
+        for (long sale : sales) {
+            if (averageSales(sales) > sale) {
                 count++;
             }
         }
